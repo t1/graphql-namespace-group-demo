@@ -1,0 +1,61 @@
+"Mutation root"
+type Mutation {
+    Product: ProductMutation
+    User: UserMutation
+}
+
+type Product {
+    description: String
+    name: String
+}
+
+type ProductMutation {
+    add(product: ProductInput): Product
+}
+
+type ProductQuery {
+    all: [Product]
+    get(id: Int!): Product
+}
+
+"Query root"
+type Query {
+    Product: ProductQuery
+    User: UserQuery
+}
+
+type User {
+    age: Int!
+    "ISO-8601"
+    born: Date
+    name: String
+}
+
+type UserMutation {
+    add(user: UserInput): User
+}
+
+type UserQuery {
+    all: [User]
+    get(id: Int!): User
+}
+
+"Scalar for BigDecimal"
+scalar BigDecimal
+
+"Scalar for BigInteger"
+scalar BigInteger
+
+"Scalar for Date"
+scalar Date
+
+input ProductInput {
+    description: String
+    name: String
+}
+
+input UserInput {
+    "ISO-8601"
+    born: Date
+    name: String
+}

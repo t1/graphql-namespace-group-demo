@@ -1,3 +1,6 @@
 # graphql-namespace-group-demo
 
-Play around with namespaces a.k.a. groups in SmallRye GraphQL
+Demo the usage of GraphQL namespaces/groups in [SmallRye GraphQL](https://github.com/smallrye/smallrye-graphql)
+in [Quarkus](https://quarkus.io).
+
+See [this](https://github.com/smallrye/smallrye-graphql/issues/2173) discussion.

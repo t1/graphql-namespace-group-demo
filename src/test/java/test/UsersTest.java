@@ -21,11 +21,11 @@ class UsersTest {
 
     @GraphQLClientApi
     interface Api {
-        @Query("User") AllUsers users();
+        @Query("users") AllUsers users();
 
-        @Query("User") GetUser user(@NestedParameter("get") int id);
+        @Query("users") GetUser user(@NestedParameter("get") int id);
 
-        @Query("User") GetUserWithAge userWithAge(@NestedParameter("get") int id);
+        @Query("users") GetUserWithAge userWithAge(@NestedParameter("get") int id);
     }
 
     record AllUsers(List<User> all) {}

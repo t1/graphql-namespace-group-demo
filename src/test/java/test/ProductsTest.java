@@ -21,9 +21,9 @@ class ProductsTest {
 
     @GraphQLClientApi
     interface Api {
-        @Query("Product") AllProducts products();
+        @Query("products") AllProducts products();
 
-        @Query("Product") GetProduct products(@NestedParameter("get") int id);
+        @Query("products") GetProduct products(@NestedParameter("get") int id);
     }
 
     record AllProducts(List<Product> all) {}

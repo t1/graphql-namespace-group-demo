@@ -2,9 +2,9 @@ package com.github.t1.demo.graphql.namespaces.users;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+import org.eclipse.microprofile.graphql.NonNull;
 
 import java.time.LocalDate;
 import java.time.Period;

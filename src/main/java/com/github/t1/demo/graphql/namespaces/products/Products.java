@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Name;
+import org.eclipse.microprofile.graphql.NonNull;
 import org.eclipse.microprofile.graphql.Query;
 
 import java.util.List;
@@ -15,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.util.Map.Entry.comparingByKey;
 
-@Name("Product")
+@Name("products")
 @GraphQLApi
 public class Products {
     private static final AtomicInteger nextId = new AtomicInteger(1);
@@ -29,13 +30,13 @@ public class Products {
     }
 
     @Query
-    public Product get(int id) {return Optional.ofNullable(MAP.get(id)).orElseThrow(() -> new ProductNotFoundException(id));}
+    public @NonNull Product get(int id) {return Optional.ofNullable(MAP.get(id)).orElseThrow(() -> new ProductNotFoundException(id));}
 
     @Query
-    public List<Product> all() {return MAP.entrySet().stream().sorted(comparingByKey()).map(Entry::getValue).toList();}
+    public @NonNull List<@NonNull Product> all() {return MAP.entrySet().stream().sorted(comparingByKey()).map(Entry::getValue).toList();}
 
     @Mutation
-    public Product add(Product product) {
+    public @NonNull Product add(@NonNull Product product) {
         MAP.put(nextId.getAndIncrement(), product);
         return product;
     }

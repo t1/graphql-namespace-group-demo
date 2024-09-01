@@ -4,6 +4,7 @@ import jakarta.annotation.PostConstruct;
 import org.eclipse.microprofile.graphql.GraphQLApi;
 import org.eclipse.microprofile.graphql.Mutation;
 import org.eclipse.microprofile.graphql.Name;
+import org.eclipse.microprofile.graphql.NonNull;
 import org.eclipse.microprofile.graphql.Query;
 
 import java.time.LocalDate;
@@ -16,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import static java.util.Map.Entry.comparingByKey;
 
-@Name("User")
+@Name("users")
 @GraphQLApi
 public class Users {
     private static final AtomicInteger nextId = new AtomicInteger(1);
@@ -30,13 +31,13 @@ public class Users {
     }
 
     @Query
-    public User get(int id) {return Optional.ofNullable(MAP.get(id)).orElseThrow(() -> new UserNotFoundException(id));}
+    public @NonNull User get(int id) {return Optional.ofNullable(MAP.get(id)).orElseThrow(() -> new UserNotFoundException(id));}
 
     @Query
-    public List<User> all() {return MAP.entrySet().stream().sorted(comparingByKey()).map(Entry::getValue).toList();}
+    public @NonNull List<@NonNull User> all() {return MAP.entrySet().stream().sorted(comparingByKey()).map(Entry::getValue).toList();}
 
     @Mutation
-    public User add(User user) {
+    public @NonNull User add(@NonNull User user) {
         MAP.put(nextId.getAndIncrement(), user);
         return user;
     }

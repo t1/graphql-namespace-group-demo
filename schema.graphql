@@ -1,7 +1,7 @@
 "Mutation root"
 type Mutation {
-  products: productsMutation
-  users: usersMutation
+  products: ProductsMutation
+  users: UsersMutation
 }
 
 type Product {
@@ -9,10 +9,19 @@ type Product {
   name: String!
 }
 
+type ProductsMutation {
+  add(product: ProductInput!): Product!
+}
+
+type ProductsQuery {
+  all: [Product!]!
+  get(id: Int!): Product!
+}
+
 "Query root"
 type Query {
-  products: productsQuery
-  users: usersQuery
+  products: ProductsQuery
+  users: UsersQuery
 }
 
 type User {
@@ -22,20 +31,11 @@ type User {
   name: String!
 }
 
-type productsMutation {
-  add(product: ProductInput!): Product!
-}
-
-type productsQuery {
-  all: [Product!]!
-  get(id: Int!): Product!
-}
-
-type usersMutation {
+type UsersMutation {
   add(user: UserInput!): User!
 }
 
-type usersQuery {
+type UsersQuery {
   all: [User!]!
   get(id: Int!): User!
 }
